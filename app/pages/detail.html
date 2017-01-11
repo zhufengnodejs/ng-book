@@ -1,5 +1,18 @@
 <div class="row">
     <div class="col-md-12">
-        图书详情
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="text-center">
+                    书名:{{book.name}} 价格:{{book.price}}
+                </h3>
+            </div>
+            <div class="panel-body">
+                <img class="book-img" ng-src="{{book.src}}" alt="">
+            </div>
+            <div class="panel-footer">
+                <button class="btn btn-warning">编辑</button>
+                <button class="btn btn-danger">删除</button>
+            </div>
+        </div>
     </div>
 </div>

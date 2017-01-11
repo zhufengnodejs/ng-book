@@ -42,6 +42,9 @@
         }).when('/add', {
             templateUrl: 'pages/add.html',
             controller:'addCtrl'
+        }).when('/detail/:_id', {
+            templateUrl: 'pages/detail.html',
+            controller:'detailCtrl'
         });
     });
     //定义一个服务名称叫Book
@@ -58,13 +61,23 @@
     angular.module('bookModule').controller('addCtrl',function($scope,Book,$location){
         $scope.book = {};
         $scope.addBook = function(){
-            alert('addBook');
             //会向后台发送 POST /books 请求体
-            Book.save($scope.book,function(){
+            Book.save($scope.book,function(book, headerGetter, status, statusText){
                 $location.path('/list');
             });
+          /*  Book.save($scope.book).$promise.then(function(book){
+                 $location.path('/list');
+            },function(error){
+                alert(error);
+            });*/
         }
     })
+    angular.module('bookModule').controller('detailCtrl',function($scope,$routeParams,Book){
+        let _id = $routeParams._id;
+        Book.get({_id},function(book){
+            $scope.book = book;
+        })
+    });
 </script>
 </body>
 </html>

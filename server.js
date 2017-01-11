@@ -22,5 +22,10 @@ app.route('/books')
                 res.send(doc);
             });
     })
-
+app.route('/books/:_id')
+    .get(function(req,res){
+         Book.findById(req.params._id,function(err,book){
+            res.send(book);
+         })
+    });
 app.listen(8080);
