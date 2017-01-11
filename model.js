@@ -8,8 +8,9 @@ let BookSchema = new mongoose.Schema({
 });
 //定义并导出模型
 exports.Book = mongoose.model('Book',BookSchema);
+/*
 exports.Book.create({
     name:'node.js实战',
     price:80,
     src:'http://img14.360buyimg.com/n0/g16/M00/07/12/rBEbRlN1yQoIAAAAAAMXeVdM1lEAABejgCMrnIAAxeR712.jpg'
-});
+});*/

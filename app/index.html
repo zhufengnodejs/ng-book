@@ -40,7 +40,8 @@
             templateUrl: 'pages/list.html',
             controller:'listCtrl'
         }).when('/add', {
-            templateUrl: 'pages/add.html'
+            templateUrl: 'pages/add.html',
+            controller:'addCtrl'
         });
     });
     //定义一个服务名称叫Book
@@ -53,6 +54,16 @@
     });
     angular.module('bookModule').controller('listCtrl',function($scope,Book){
         $scope.books = Book.query();
+    })
+    angular.module('bookModule').controller('addCtrl',function($scope,Book,$location){
+        $scope.book = {};
+        $scope.addBook = function(){
+            alert('addBook');
+            //会向后台发送 POST /books 请求体
+            Book.save($scope.book,function(){
+                $location.path('/list');
+            });
+        }
     })
 </script>
 </body>
