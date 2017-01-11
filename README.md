@@ -25,5 +25,5 @@ bower init
 ```
 2. 安装前端依赖的模块
 ```
-bower install angular bootstrap angular-route  --save
+bower install angular bootstrap angular-route   angular-resource --save
 ```
