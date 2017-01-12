@@ -72,11 +72,34 @@
             });*/
         }
     })
-    angular.module('bookModule').controller('detailCtrl',function($scope,$routeParams,Book){
+    angular.module('bookModule').controller('detailCtrl',function($scope,$routeParams,Book,$location){
         let _id = $routeParams._id;
         Book.get({_id},function(book){
-            $scope.book = book;
+            let _book = angular.copy(book);
+            $scope.book = book;//用来可以更新用的数据
+            $scope._book = _book;//原来的数据
         })
+        $scope.removeBook = function(){
+            Book.delete({_id},function(){
+                $location.path('/list');
+            })
+        }
+        //默认编辑中状态为false
+        $scope.editing = false;
+        $scope.edit = function(){
+            $scope.editing = true;
+        }
+        $scope.cancel = function(){
+            //1 源地象 2 目标对象
+            angular.copy($scope._book,$scope.book);
+            $scope.editing = false;
+        }
+        $scope.confirm = function(){
+            Book.update({_id},$scope.book,function(){
+                $scope.editing = false;
+            });
+        }
+
     });
 </script>
 </body>
